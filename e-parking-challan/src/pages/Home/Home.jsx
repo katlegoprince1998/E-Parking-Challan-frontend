@@ -1,6 +1,7 @@
 import React from "react";
 import "./Home.css";
-import homeImg1 from "./images/landingpic.png"
+import homeImg1 from "../../images/landingpic.png";
+
 
 export const Home = () => {
   return (
@@ -9,11 +10,12 @@ export const Home = () => {
         className="center-text"
         style={{
           fontSize: "3.5rem",
-          paddingTop: "2rem",
+          textAlign: "center",
+          paddingTop: ".1rem",
         }}
       >
-        <span style={{ color: "#00A9FF" }}>BUZZ </span>
-        SOCIAL.
+        <span style={{ color: "#00A9FF" }}>E-Parking </span>
+        Challan.
       </h1>
 
       <div className="home-container-layout">
@@ -23,25 +25,26 @@ export const Home = () => {
 
         <div className="home-container-content">
           <p className="left-text margin">
-            <span className="home-container-header">Stay</span>
+            <span className="home-container-header">Park</span>
             <small className="home-container-small-header">
-              IN THE BUZZ, CONNECT BEYOND LIMITS
+              RIGHT
             </small>
           </p>
           <p className="left-text margin">
-            <span className="home-container-header">Ignite</span>
+            <span className="home-container-header">Pay</span>
             <small className="home-container-small-header">
-              YOUR SOCIAL PULSE WITH BUZZ
+            RIGHT
             </small>
           </p>
           <p className="left-text margin">
-            <span className="home-container-header">Elevate</span>
+            
             <small className="home-container-small-header">
-              YOUR SOCIAL EXPERIENCE
+              E-PARKING CHALLAN'S 
             </small>
+            <span className="home-container-header">Promise</span>
           </p>
           <button className="login-primary-btn home-container-btn">
-            Let's explore
+            Create account
           </button>
           <p className="home-container-login-link center-text orange-color">
             Already have an account ?
