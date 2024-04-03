@@ -1,7 +1,7 @@
 import React from "react";
+//import { Link } from "react-router-dom";
 import "./Home.css";
 import homeImg1 from "../../images/landingpic.png";
-
 
 export const Home = () => {
   return (
@@ -26,20 +26,15 @@ export const Home = () => {
         <div className="home-container-content">
           <p className="left-text margin">
             <span className="home-container-header">Park</span>
-            <small className="home-container-small-header">
-              RIGHT
-            </small>
+            <small className="home-container-small-header">RIGHT</small>
           </p>
           <p className="left-text margin">
             <span className="home-container-header">Pay</span>
-            <small className="home-container-small-header">
-            RIGHT
-            </small>
+            <small className="home-container-small-header">RIGHT</small>
           </p>
           <p className="left-text margin">
-            
             <small className="home-container-small-header">
-              E-PARKING CHALLAN'S 
+              E-PARKING CHALLAN'S
             </small>
             <span className="home-container-header">Promise</span>
           </p>
@@ -54,3 +49,5 @@ export const Home = () => {
     </>
   );
 };
+
+
