@@ -1,0 +1,103 @@
+/* PaymentFormPage.css */
+
+.payment-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}
+
+.payment-slip {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.payment-button,
+.annual-tax-button {
+  padding: 10px 20px;
+  background-color: #00a9ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.payment-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.payment-popup h2 {
+  margin-top: 0;
+}
+
+.payment-popup button {
+  padding: 10px 20px;
+  background-color: #00a9ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.payment-button:hover,
+.annual-tax-button:hover,
+.payment-popup button:hover {
+  background-color: #00a9ff;
+}
+
+.payment-button:active,
+.annual-tax-button:active,
+.payment-popup button:active {
+  background-color: #00a9ff;
+}
+
+/* Styles for the receipt section */
+.receipt {
+  margin-bottom: 20px; /* Updated margin to create space below */
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+.logout-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 5px 10px;
+  background-color: #00a9ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #00a9ff;
+}
+
+.logout-button:active {
+  background-color: #00a9ff;
+}
+
+/* Update button style for Added To Annual Tax */
+.added-to-annual-tax {
+  background-color: green;
+}
+
+/* Add hover and active styles for the added-to-annual-tax button */
+.added-to-annual-tax:hover {
+  background-color: darkgreen;
+}
+
+.added-to-annual-tax:active {
+  background-color: forestgreen;
+}

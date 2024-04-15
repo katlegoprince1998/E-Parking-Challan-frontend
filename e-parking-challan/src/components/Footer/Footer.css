@@ -1,0 +1,16 @@
+.footer {
+    position: fixed; /* or "absolute" if you want it relative to the nearest positioned ancestor */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }  
+  .copyright-text {
+    margin-top: 10px;
+  }
+  .fa-brands {
+    font-size: 1.6rem;
+  }

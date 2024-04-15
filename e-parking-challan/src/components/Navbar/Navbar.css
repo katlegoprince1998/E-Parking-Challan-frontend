@@ -1,0 +1,42 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #a3c9dc; /* blue */
+    color: white;
+  }
+  
+  .menu-icon {
+    font-size: 2.5rem; /* Default size for larger screens */
+    cursor: pointer;
+  }
+  
+  @media (max-width: 768px) {
+    /* Adjust size for smaller screens */
+    .menu-icon {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    /* Further adjust size for extra-small screens */
+    .menu-icon {
+      font-size: 1.5rem;
+    }
+  }
+  
+  .menu-links {
+    display: flex;
+  }
+  
+  .nav-link {
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .nav-link:hover {
+    background-color: #00a9ff; /* darker blue on hover */
+  }
+  

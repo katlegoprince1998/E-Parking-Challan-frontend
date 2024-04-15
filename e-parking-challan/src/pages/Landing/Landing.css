@@ -1,0 +1,89 @@
+/* Landing.css */
+.home-container-header {
+    font-size: 2.3rem;
+    letter-spacing: 3px;
+    font-weight: bolder;
+    color: #000000;
+  }
+  
+  .box-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .box {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .red-box {
+    background-color: #ff4d4d; /* Red background color */
+    width: 40%; /* Reduce red box width */
+    margin-right: 20px; /* Add space to the right of the red box */
+  }
+  
+  .green-box {
+    background-color: #66ff66; /* Green background color */
+    width: 55%; /* Adjust green box width */
+    margin-left: 20px; /* Add space to the left of the green box */
+  }
+  
+  .box-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: -25px; /* Adjust the margin-top */
+  }
+  
+  .box-labels p {
+    font-size: 2rem;
+    font-weight: bolder;
+    color: #000000;
+  }
+
+  
+  .box-content {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: white; /* Text color inside the boxes */
+    text-align: center; /* Center the text horizontally */
+  }
+  .right-text{
+    margin-right: 480px;
+
+  }
+  .report-container-btn {
+    width: 24rem;
+    height: 3.5rem;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    margin: 40px auto;
+    cursor: pointer;
+    border: none; /* Remove border */
+    margin-left: 32%;/* Centers the button horizontally and adds some space from the top */
+  }
+  
+  .report-primary-btn {
+    background-color: #00a9ff; /* Blue color for button */
+    color: white; /* White text color */
+    align-items: center;
+  }
+  
+  
+  /* Add any additional styling as needed */
+  @media screen and (min-width: 768px) {
+    .home-container-header {
+      font-size: 2.6rem;
+      letter-spacing: 3.5px;
+    }
+  }
+  
+  @media screen and (min-width: 1024px) {
+    .home-container-header {
+      font-size: 2.6rem;
+      letter-spacing: 3.5px;
+    }
+  }
+  

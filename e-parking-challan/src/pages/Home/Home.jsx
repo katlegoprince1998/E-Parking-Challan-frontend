@@ -1,5 +1,5 @@
 import React from "react";
-//import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import "./Home.css";
 import homeImg1 from "../../images/landingpic.png";
 
@@ -38,12 +38,17 @@ export const Home = () => {
             </small>
             <span className="home-container-header">Promise</span>
           </p>
-          <button className="login-primary-btn home-container-btn">
+          <Link to="/signup">
+          <button className="login-primary-btn home-container-btn" >
             Create account
           </button>
+          </Link>
+          
+          <Link to="/login">
           <p className="home-container-login-link center-text orange-color">
             Already have an account ?
           </p>
+          </Link>
         </div>
       </div>
     </>

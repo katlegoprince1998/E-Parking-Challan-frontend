@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Login.css";
 
 export const Login = () => {
@@ -28,6 +29,9 @@ export const Login = () => {
                   type="text"
                   placeholder="E-Parking-Challan"
                   name="username"
+                  pattern="[A-Za-z]{1,20}" // Allows only letters with a maximum length of 20
+                  title="Username must be letters only with a maximum of 20 characters"
+                  required // Marked as required
                 />
               </label>
               <label className="flex-col">
@@ -37,6 +41,7 @@ export const Login = () => {
                   type="password"
                   placeholder="******"
                   name="password"
+                  required // Marked as required
                 />
               </label>
               <label className="login-terms-condition">
@@ -45,13 +50,16 @@ export const Login = () => {
                 />{" "}
                 Remember Me
               </label>
-              <button className="login-primary-btn">Login</button>
-              <span className="login-link">Create New Account</span>
+              <Link to="/landing">
+                <button className="login-primary-btn">Login</button>
+              </Link>
+              <Link to="/signup">
+                <span className="login-link">Create New Account</span>
+              </Link>
             </form>
           </div>
         </section>
       </div>
-
     </>
   );
 };

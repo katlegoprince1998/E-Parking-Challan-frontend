@@ -1,0 +1,71 @@
+.home-container-header {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000000;
+    text-transform: none; /* Prevents capitalization */
+  }
+  
+  .welcome {
+    text-align: center;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .home-container-header {
+      font-size: 1.3rem;
+    }
+  }
+  
+  @media screen and (min-width: 1024px) {
+    .home-container-header {
+      font-size: 1.3rem;
+    }
+  }
+  .report-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-bottom: 90px;
+  }
+  
+  .report-form .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .report-form label {
+    font-weight: bold;
+  }
+  
+  .report-form input[type="text"],
+  .report-form input[type="datetime-local"],
+  .report-form textarea,
+  .report-form input[type="file"],
+  .report-form button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .report-form textarea {
+    height: 100px;
+  }
+  
+  .report-form button[type="submit"] {
+    background-color: #00a9ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .report-form button[type="submit"]:hover {
+    background-color: #007bbf;
+  }
+  
+  
+  
