@@ -1,15 +1,51 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "./Report.css";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { Navbar } from "../../components/Navbar/Navbar";
 import { Footer } from "../../components/Footer/Footer";
+import "./Report.css";
 
 export const Report = () => {
-  const [violationType, setViolationType] = useState(""); // State to track the selected violation type
+  const [formData, setFormData] = useState({
+    numberPlate: "",
+    amount: "",
+    location: "",
+    typeOfViolation: "",
+    description: "",
+  });
 
-  // Function to handle changes in the violation type dropdown
-  const handleViolationTypeChange = (e) => {
-    setViolationType(e.target.value);
+  const navigate = useNavigate();
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const token = localStorage.getItem("token");
+    const data = {
+      numberPlate: formData.numberPlate,
+      amount: formData.amount,
+      location: formData.location,
+      typeOfViolation: formData.typeOfViolation,
+      description: formData.description,
+    };
+
+    try {
+      const response = await axios.post("http://localhost:8080/dashboard/report", data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log("Report created successfully:", response.data);
+      navigate("/landing"); // Redirect to landing page after successful submission
+    } catch (error) {
+      console.error("Error creating report:", error);
+      // Handle error state or display an error message to the user
+    }
   };
 
   return (
@@ -19,23 +55,43 @@ export const Report = () => {
         <span className="home-container-header">Report Violation</span>
       </p>
 
-      <form className="report-form">
+      <form className="report-form" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="licensePlate">License Plate:</label>
-          <input type="text" id="licensePlate" name="licensePlate" />
+          <label htmlFor="numberPlate">License Plate:</label>
+          <input
+            type="text"
+            id="numberPlate"
+            name="numberPlate"
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="amount">Amount:</label>
+          <input
+            type="text"
+            id="amount"
+            name="amount"
+            onChange={handleInputChange}
+          />
         </div>
         <div className="form-group">
           <label htmlFor="location">Location:</label>
-          <input type="text" id="location" name="location" />
+          <input
+            type="text"
+            id="location"
+            name="location"
+            onChange={handleInputChange}
+          />
         </div>
         <div className="form-group">
-          <label htmlFor="violationType">Type of Violation:</label>
+          <label htmlFor="typeOfViolation">Type of Violation:</label>
           <select
-            id="violationType"
-            name="violationType"
-            value={violationType} // Set the value of the select to the state
-            onChange={handleViolationTypeChange} // Handle changes in the select
+            id="typeOfViolation"
+            name="typeOfViolation"
+            value={formData.typeOfViolation}
+            onChange={handleInputChange}
           >
+            
             <option value="">Select violation type...</option>
             <option value="Illegal Parking">Illegal Parking</option>
             <option value="Blocking Driveway">Blocking Driveway</option>
@@ -43,20 +99,26 @@ export const Report = () => {
             <option value="Double Parking">Double Parking</option>
             <option value="Parking in Handicap Zone">Parking in Handicap Zone</option>
             <option value="Parking in No Parking Zone">Parking in No Parking Zone</option>
-            {/* Add more options as needed */}
           </select>
         </div>
         <div className="form-group">
-          <label htmlFor="description">Description:</label>
-          <textarea id="description" name="description"></textarea>
+          <label htmlFor="location">Upload picture:</label>
+          <input
+            type="file"
+            id="file"
+            name="file"
+           
+          />
         </div>
         <div className="form-group">
-          <label htmlFor="picture">Upload Picture:</label>
-          <input type="file" id="picture" name="picture" accept="image/*" />
+          <label htmlFor="description">Description:</label>
+          <textarea
+            id="description"
+            name="description"
+            onChange={handleInputChange}
+          ></textarea>
         </div>
-        <Link to="/loginpage">
-          <button type="submit">Submit</button>
-        </Link>
+        <button type="submit">Submit</button>
       </form>
 
       <Footer />

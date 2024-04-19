@@ -1,34 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./History.css";
 import { Navbar } from "../../components/Navbar/Navbar";
 import { Footer } from "../../components/Footer/Footer";
+import axios from "axios";
 
 export const History = () => {
+  const [historyData, setHistoryData] = useState([]);
+
+  useEffect(() => {
+    fetchHistoryData(); // Fetch all data initially
+  }, []); // Empty dependency array to run once on component mount
+
+  const fetchHistoryData = () => {
+    axios.get("http://localhost:8080/dashboard/violations")
+      .then((response) => {
+        setHistoryData(response.data); // Update state with fetched data
+      })
+      .catch((error) => {
+        console.error("Error fetching history data:", error);
+      });
+  };
+
   return (
     <div>
       <Navbar />
       <p className="welcome">
         <span className="home-container-header">View History</span>
       </p>
-
-      <div className="history-search">
-        <label htmlFor="dateTime">Date and Time:</label>
-        <input type="datetime-local" id="dateTime" name="dateTime" />
-
-        <label htmlFor="violationType">Type of Violation:</label>
-        <select id="violationType" name="violationType">
-          <option value="">Select violation type...</option>
-          <option value="Illegal Parking">Illegal Parking</option>
-          <option value="Blocking Driveway">Blocking Driveway</option>
-          <option value="Expired Meter">Expired Meter</option>
-          <option value="Double Parking">Double Parking</option>
-          <option value="Parking in Handicap Zone">Parking in Handicap Zone</option>
-          <option value="Parking in No Parking Zone">Parking in No Parking Zone</option>
-          {/* Add more options as needed */}
-        </select>
-
-        <button className="search-button">Search</button>
-      </div>
 
       <p className="history-table-title">History Table</p>
 
@@ -43,15 +41,22 @@ export const History = () => {
           </tr>
         </thead>
         <tbody>
-          {/* Table rows will be populated with historical data */}
-          <tr>
-            <td>ABC123</td>
-            <td>2022-04-15T12:00</td>
-            <td>Main Street</td>
-            <td>Illegal Parking</td>
-            <td>Car parked in no parking zone</td>
-          </tr>
-          {/* Add more rows as needed */}
+          {historyData.map((report) => (
+            <tr key={report.id}>
+              <td>{report.numberPlate}</td>
+              <td>{report.dayAndTime}</td>
+              <td>{report.location}</td>
+              <td>{report.typeOfViolation}</td>
+              <td>{report.description}</td>
+            </tr>
+          ))}
+          {historyData.length === 0 && (
+            <tr>
+              <td colSpan="5" style={{ textAlign: "center" }}>
+                No data available
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
 

@@ -1,8 +1,49 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom"; 
+import axios from "axios";
 import "./Login.css";
 
 export const Login = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const navigate = useNavigate(); // Use useNavigate hook for navigation
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    console.log(`Updating ${name} with value: ${value}`);
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("Form Data:", formData);
+  
+    try {
+      // Make sure the axios.post request is correctly formatted
+      const response = await axios.post(
+        "http://localhost:8080/auth/login",
+        formData
+      );
+      console.log("Login response:", response.data);
+      // Handle the response accordingly
+      // Assuming you receive the JWT after successful login
+localStorage.setItem('token', response.data.jwt);
+
+       // Navigate to login page upon successful registration
+       navigate("/landing");
+    } catch (error) {
+      console.error("Login failed:", error);
+      // Handle error
+    }
+  };
+  
+  
   return (
     <>
       <h1
@@ -13,25 +54,24 @@ export const Login = () => {
           paddingTop: ".1rem",
         }}
       >
-        <span style={{ color: "#00A9FF" }}>E-Parking </span>
-        Challan.
+        <span style={{ color: "#00A9FF" }}>E-Parking </span>Challan.
       </h1>
 
       <div className="login-layout-container">
         <section>
           <div className="login-layout">
             <h1 className="center-text login-header">Login</h1>
-            <form className="login-form-container">
+            <form className="login-form-container" onSubmit={handleSubmit}>
               <label className="flex-col">
-                Username{" "}
+                Email{" "}
                 <input
                   className="login-input"
-                  type="text"
+                  type="email"
                   placeholder="E-Parking-Challan"
-                  name="username"
-                  pattern="[A-Za-z]{1,20}" // Allows only letters with a maximum length of 20
-                  title="Username must be letters only with a maximum of 20 characters"
-                  required // Marked as required
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
                 />
               </label>
               <label className="flex-col">
@@ -41,20 +81,17 @@ export const Login = () => {
                   type="password"
                   placeholder="******"
                   name="password"
-                  required // Marked as required
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
                 />
               </label>
-              <label className="login-terms-condition">
-                <input
-                  type="checkbox"
-                />{" "}
-                Remember Me
-              </label>
-              <Link to="/landing">
-                <button className="login-primary-btn">Login</button>
-              </Link>
-              <Link to="/signup">
-                <span className="login-link">Create New Account</span>
+             
+              <button type="submit" className="login-primary-btn">
+                Login
+              </button>
+              <Link to="/signup" className="login-link">
+                Create New Account
               </Link>
             </form>
           </div>
@@ -63,3 +100,5 @@ export const Login = () => {
     </>
   );
 };
+
+export default Login;

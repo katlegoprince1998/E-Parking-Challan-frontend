@@ -1,17 +1,19 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom"; 
 import "./Signup.css";
-import { Link } from "react-router-dom";
+import axios from 'axios';
 
 export const Signup = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    paggeId: "",
-    username: "",
     email: "",
+    phone: "",
+    idNo: "",
     password: "",
-    confirmPassword: "",
   });
+
+  const navigate = useNavigate(); // Use useNavigate hook for navigation
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,28 +23,29 @@ export const Signup = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      alert("Password and Confirm Password must match!");
-    } else {
-      // Passwords match, continue with form submission
-      console.log("Form submitted successfully:", formData);
+
+    try {
+      // Make POST request to backend endpoint
+      const response = await axios.post('http://localhost:8080/auth/register', formData);
+
+      // Handle successful response
+      console.log('Registration successful:', response.data);
+
+      // Navigate to login page upon successful registration
+      navigate("/login");
+
+    } catch (error) {
+      // Handle error
+      console.error('Registration failed:', error);
     }
   };
 
   return (
     <>
-      <h1
-        className="center-text"
-        style={{
-          fontSize: "3.5rem",
-          textAlign: "center",
-          paddingTop: ".1rem",
-        }}
-      >
-        <span style={{ color: "#00A9FF" }}>E-Parking </span>
-        Challan.
+      <h1 className="center-text" style={{ fontSize: "3.5rem", textAlign: "center", paddingTop: ".1rem" }}>
+        <span style={{ color: "#00A9FF" }}>E-Parking </span>Challan.
       </h1>
 
       <section>
@@ -53,7 +56,7 @@ export const Signup = () => {
               First Name{" "}
               <input
                 type="text"
-                placeholder="eparking"
+                placeholder="Firstname.."
                 required
                 className="login-input"
                 name="firstName"
@@ -65,7 +68,7 @@ export const Signup = () => {
               Last Name{" "}
               <input
                 type="text"
-                placeholder="challan"
+                placeholder="Lastname.."
                 required
                 className="login-input"
                 name="lastName"
@@ -74,38 +77,38 @@ export const Signup = () => {
               />
             </label>
             <label className="flex-col">
-              Pagge ID{" "}
+              Email{" "}
               <input
                 type="text"
-                placeholder="D121537"
-                required
-                className="login-input"
-                name="paggeId"
-                value={formData.paggeId}
-                onChange={handleChange}
-              />
-            </label>
-            <label className="flex-col">
-              Username{" "}
-              <input
-                type="text"
-                placeholder="eparkingchallan"
-                required
-                className="login-input"
-                name="username"
-                value={formData.username}
-                onChange={handleChange}
-              />
-            </label>
-            <label className="flex-col">
-              Email Address{" "}
-              <input
-                type="email"
-                placeholder="eparkingchallen@gmail.com"
+                placeholder="email@gmail.com"
                 required
                 className="login-input"
                 name="email"
                 value={formData.email}
+                onChange={handleChange}
+              />
+            </label>
+            <label className="flex-col">
+              Cell No{" "}
+              <input
+                type="text"
+                placeholder="07962151..."
+                required
+                className="login-input"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+              />
+            </label>
+            <label className="flex-col">
+              Id No{" "}
+              <input
+                type="text"
+                placeholder="8851515..."
+                required
+                className="login-input"
+                name="idNo"
+                value={formData.idNo}
                 onChange={handleChange}
               />
             </label>
@@ -121,34 +124,16 @@ export const Signup = () => {
                 onChange={handleChange}
               />
             </label>
-            <label className="flex-col">
-              Confirm Password{" "}
-              <input
-                type="password"
-                placeholder="******"
-                required
-                className="login-input"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-              />
-            </label>
-            <label className="login-terms-condition">
-              <input type="checkbox" required />
-              I accept all Terms & Conditions
-            </label>
-            <Link to="/login">
             <button type="submit" className="login-primary-btn">
               Create New Account
             </button>
-            </Link>
-
-            <Link to="/login">
-              <span className="login-link">Already have an account</span>
-            </Link>
+            <Link to="/login" className="login-link">Already have an account</Link>
+            {/* Use Link component to navigate to the /login route */}
           </form>
         </div>
       </section>
     </>
   );
 };
+
+export default Signup;
